@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Velocidad de movimiento horizontal
-    public float jumpForce = 10f; // Fuerza de salto
+    public float moveSpeed = 5f; // Horizontal movement velocity
+    public float jumpForce = 10f; // Jump force
+    public float dashForce = 10f; // Dash force
     private Rigidbody2D rb;
     private bool isGrounded;
 
@@ -16,14 +17,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Movimiento horizontal
+        // Horizontal movement
         float moveInput = Input.GetAxis("Horizontal");
+        
+        // This has an error, it overrides the force and disables the function of dashing
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
-        // Salto
+        // Jump
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+
+        // Dash
+        if (Input.GetKeyDown(KeyCode.E) && !isGrounded)
+        {
+            //moveSpeed = dashForce;
+            rb.velocity = new Vector2(dashForce, rb.velocity.y);
         }
     }
 
