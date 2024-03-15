@@ -35780,7 +35780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 20
+  jumpForce: 30
   dashForce: 15
 --- !u!50 &600317861
 Rigidbody2D:
@@ -36061,7 +36061,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -36085,7 +36085,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346265024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.43, y: -4.92, z: -10}
+  m_LocalPosition: {x: -14.43, y: -3.98, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -36105,8 +36105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 600317864}
-  smoothSpeed: 0.125
-  offset: {x: 0, y: 0, z: 0}
+  smoothSpeed: 0.2
+  offset: {x: 1, y: 2, z: 0}
 --- !u!1 &1519339770
 GameObject:
   m_ObjectHideFlags: 0
