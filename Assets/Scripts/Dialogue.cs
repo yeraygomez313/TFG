@@ -25,6 +25,15 @@ public class Dialogue : MonoBehaviour
             {
                 StartDialogue();
             }
+            else if (dialogueText.text == dialogueLines[lineIndex])
+            {
+                NextDialogueLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                dialogueText.text = dialogueLines[lineIndex];
+            }
         }
     }
 
@@ -34,7 +43,24 @@ public class Dialogue : MonoBehaviour
         dialoguePanel.SetActive(true);
         canDialogue.SetActive(false);
         lineIndex = 0;
+        Time.timeScale = 0f;
         StartCoroutine(ShowLine());
+    }
+
+    private void NextDialogueLine()
+    {
+        lineIndex++;
+        if (lineIndex < dialogueLines.Length)
+        {
+            StartCoroutine(ShowLine());
+        }
+        else
+        {
+            didDialogueStart = false;
+            dialoguePanel.SetActive(false);
+            canDialogue.SetActive(true);
+            Time.timeScale = 1f;
+        }
     }
 
     private IEnumerator ShowLine()
@@ -44,7 +70,7 @@ public class Dialogue : MonoBehaviour
         foreach (char ch in dialogueLines[lineIndex])
         {
             dialogueText.text += ch;
-            yield return new WaitForSeconds(typingTime);
+            yield return new WaitForSecondsRealtime(typingTime);
         }
     }
 
