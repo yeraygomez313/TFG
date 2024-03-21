@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,10 +15,15 @@ public class PlayerMovement : MonoBehaviour
     private float dashingTime = 0.3f;
     private SpriteRenderer playerSprite;
 
+    [Header("Animation")]
+
+    private Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerSprite = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -26,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Horizontal movement
         float moveInput = Input.GetAxis("Horizontal");
+        animator.SetFloat("Horizontal", Math.Abs(moveInput));
         
         // This has an error, it overrides the force and disables the function of dashing
         if (!isDashing)
