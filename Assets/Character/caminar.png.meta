@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -101,18 +101,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -131,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 433c63ec04cc93348bfc6eb7ade00418
-      internalID: -29496858
+      spriteID: 04163afec76fe5147bc7ff105c5ed10f
+      internalID: -1387099846
       vertices: []
       indices: 
       edges: []
@@ -152,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d85abd8c622d3044a83eef48e3725e12
-      internalID: -2074203893
+      spriteID: 06896838b6d81c84e8b5f91877a68503
+      internalID: 1005625082
       vertices: []
       indices: 
       edges: []
@@ -173,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fb20b0048934b24e8d999c820892fc0
-      internalID: 356235896
+      spriteID: 4078b4e32a770ae49bb36e5729d86c89
+      internalID: -40281879
       vertices: []
       indices: 
       edges: []
@@ -194,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d92c17b86b37b9448b7daf5e0e325a02
-      internalID: -1636519393
+      spriteID: 307252f5ee602714b92b948e79e600c1
+      internalID: 1528631105
       vertices: []
       indices: 
       edges: []
@@ -215,29 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4401125538d022459a82fb8dffab8c1
-      internalID: 1476952247
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: caminar_5
-      rect:
-        serializedVersion: 2
-        x: 1200
-        y: 0
-        width: 240
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef1925bca87d8d94390c1d16af167118
-      internalID: 161900377
+      spriteID: 14e58b9d679aaed48a9207b6d33cdab2
+      internalID: 1737437398
       vertices: []
       indices: 
       edges: []
@@ -253,12 +220,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      caminar_1: -2074203893
-      caminar_3: -1636519393
-      caminar_5: 161900377
-      caminar_0: -29496858
-      caminar_4: 1476952247
-      caminar_2: 356235896
+      caminar_1: 1005625082
+      caminar_3: 1528631105
+      caminar_0: -1387099846
+      caminar_4: 1737437398
+      caminar_2: -40281879
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
