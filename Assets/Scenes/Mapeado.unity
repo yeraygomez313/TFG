@@ -48828,8 +48828,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  jumpForce: 30
-  dashForce: 15
+  jumpForce: 10
+  dashForce: 10
+  onFloor: 0
 --- !u!50 &600317861
 Rigidbody2D:
   serializedVersion: 4
@@ -48918,7 +48919,7 @@ SpriteRenderer:
   m_SortingLayerID: -1300317793
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: -29496858, guid: 69bc645999409de48b5f287158b30ea1, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -48926,7 +48927,7 @@ SpriteRenderer:
   m_Size: {x: 16, y: 21.333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &600317864
@@ -49703,6 +49704,7 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 20
   dashForce: 15
+  onFloor: 0
 --- !u!50 &1519339772
 Rigidbody2D:
   serializedVersion: 4

@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float elapsedTime = 0f;
     private float dashingTime = 0.3f;
     private SpriteRenderer playerSprite;
+    [SerializeField] private bool onFloor;
 
     [Header("Animation")]
 
@@ -33,6 +34,15 @@ public class PlayerMovement : MonoBehaviour
         // Horizontal movement
         float moveInput = Input.GetAxis("Horizontal");
         animator.SetFloat("Horizontal", Math.Abs(moveInput));
+
+        if (moveInput < 0)
+        {
+            playerSprite.flipX = true;
+        }
+        else if (moveInput > 0)
+        {
+            playerSprite.flipX = false;
+        }
         
         // This has an error, it overrides the force and disables the function of dashing
         if (!isDashing)
@@ -87,9 +97,14 @@ public class PlayerMovement : MonoBehaviour
         // Stops the dash and allows the player to use the rest of the inputs
         if (elapsedTime > dashingTime)
         {
-            rb.gravityScale = 9.8f;
+            rb.gravityScale = 2.0f;
             isDashing = false;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        animator.SetBool("onFloor", isGrounded);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
