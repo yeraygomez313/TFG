@@ -48827,8 +48827,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8487fd18f7462f44bb46a2c54cbe53e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  jumpForce: 10
+  moveSpeed: 3
+  jumpForce: 12
   dashForce: 10
   onFloor: 0
 --- !u!50 &600317861
@@ -48919,7 +48919,7 @@ SpriteRenderer:
   m_SortingLayerID: -1300317793
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1387099846, guid: 69bc645999409de48b5f287158b30ea1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -48927,7 +48927,7 @@ SpriteRenderer:
   m_Size: {x: 16, y: 21.333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &600317864
