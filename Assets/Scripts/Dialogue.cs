@@ -10,6 +10,9 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField, TextArea(4, 6)] private string[] dialogueLines;
 
+    [SerializeField] private AudioClip letterSound; // Sonido para cada letra
+    [SerializeField] private AudioSource audioSource; // AudioSource para reproducir el sonido
+
     private float typingTime = 0.05f;
 
     private bool isPlayerInRange;
@@ -70,6 +73,10 @@ public class Dialogue : MonoBehaviour
         foreach (char ch in dialogueLines[lineIndex])
         {
             dialogueText.text += ch;
+            if (letterSound != null)
+            {
+                audioSource.PlayOneShot(letterSound); // Reproducir sonido por cada letra
+            }
             yield return new WaitForSecondsRealtime(typingTime);
         }
     }
