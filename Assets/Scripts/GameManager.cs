@@ -22,10 +22,13 @@ public class GameManager : MonoBehaviour
     {
         if (player.transform.position.x > 40.0f && once)
         {
+            playerMovement.movementEnabled = false;
             once = false;
             audioSource.PlayOneShot(crashSound);
             Invoke("mirar", 1);
             Invoke("mirar2", 2);
+            Invoke("texto", 2);
+            Invoke("moverse", 1);
         }
     }
 
@@ -37,5 +40,22 @@ public class GameManager : MonoBehaviour
     void mirar2()
     {
         playerMovement.playerSprite.flipX = false;
+    }
+
+    void texto()
+    {
+        // Crear una instancia del objeto en el que deseas instanciar el script
+        GameObject nuevoObjeto = GameObject.Find("Texto1");
+
+        // Agregar el script SelfDialogue al nuevo objeto
+        SelfDialogue selfDialogue = nuevoObjeto.GetComponent<SelfDialogue>();
+
+        // Activar el diálogo
+        selfDialogue.StartDialogue();
+    }
+
+    void moverse()
+    {
+        playerMovement.movementEnabled = true;
     }
 }
