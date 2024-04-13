@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Animation")]
 
-    private Animator animator;
+    public Animator animator;
 
     //PRUEBA DE SONIDO
     [SerializeField] private AudioClip lvl1ambienceSound; // Sonido para cada letra
@@ -38,14 +38,15 @@ public class PlayerMovement : MonoBehaviour
     {
         elapsedTime += Time.deltaTime;
 
-        // Horizontal movement
-        float moveInput = Input.GetAxis("Horizontal");
-        animator.SetFloat("Horizontal", Math.Abs(moveInput));
-        print(Math.Abs(moveInput));
+        print(movementEnabled);
 
         if (movementEnabled) {
+            // Horizontal movement
+            float moveInput = Input.GetAxis("Horizontal");
+            animator.SetFloat("Horizontal", Math.Abs(moveInput));
             if (moveInput < 0)
             {
+                print("holaaa");
                 playerSprite.flipX = true;
             }
             else if (moveInput > 0)
