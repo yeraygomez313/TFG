@@ -23,12 +23,14 @@ public class GameManager : MonoBehaviour
         if (player.transform.position.x > 40.0f && once)
         {
             playerMovement.movementEnabled = false;
-            once = false;
+            playerMovement.animator.SetFloat("Horizontal", 0);
             audioSource.PlayOneShot(crashSound);
-            Invoke("mirar", 1);
+            once = false;
+            Invoke("mirar", 0.5f);
             Invoke("mirar2", 2);
             Invoke("texto", 2);
-            Invoke("moverse", 1);
+            print("feo");
+            Invoke("moverse", 4.5f);
         }
     }
 
