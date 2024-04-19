@@ -10,6 +10,7 @@ public class EnemyChasing : MonoBehaviour
     public LayerMask groundLayer; // Capa que representa el suelo
     public float groundCheckRadius = 0.1f; // Radio del círculo de comprobación del suelo
     private bool isGrounded;
+    public bool canChase = false;
 
     private Rigidbody2D rb;
 
@@ -20,17 +21,19 @@ public class EnemyChasing : MonoBehaviour
 
     void Update()
     {
-
-        // Calculamos la dirección hacia la que debe moverse el enemigo para perseguir al jugador
-        Vector2 direction = (player.position - transform.position).normalized;
-
-        // Movemos al enemigo en la dirección del jugador con una velocidad constante
-        transform.position += (Vector3)direction * speed * Time.deltaTime;
-        print(isGrounded + "  grounddd");
-        // Si el enemigo está en el suelo y el jugador está por encima, saltamos
-        if (isGrounded && player.position.y > transform.position.y)
+        if (canChase)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            // Calculamos la dirección hacia la que debe moverse el enemigo para perseguir al jugador
+            Vector2 direction = (player.position - transform.position).normalized;
+
+            // Movemos al enemigo en la dirección del jugador con una velocidad constante
+            transform.position += (Vector3)direction * speed * Time.deltaTime;
+            print(isGrounded + "  grounddd");
+            // Si el enemigo está en el suelo y el jugador está por encima, saltamos
+            if (isGrounded && player.position.y > transform.position.y)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
         }
     }
 

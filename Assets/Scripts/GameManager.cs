@@ -6,10 +6,19 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject player;
-    [SerializeField] private AudioClip crashSound;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private GameObject enemy;
+    [SerializeField] private Camera cameraPlayer;
+    [SerializeField] private CameraFollow cameraFollow;
+    [SerializeField] private EnemyChasing enemyChasing;
 
-    private bool once = true;
+    [SerializeField] private AudioClip crashSound;
+    [SerializeField] private AudioClip creepyViolins;
+    [SerializeField] private AudioClip chasingViolins;
+    [SerializeField] private AudioSource audioEffects;
+    [SerializeField] private AudioSource audioMusic;
+
+    private bool firstEvent = true;
+    private bool secondEvent = true;
 
     // Start is called before the first frame update
     void Start()
@@ -20,18 +29,54 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.transform.position.x > 40.0f && once)
+        // Primer evento
+        if (player.transform.position.x > 40.0f && firstEvent)
         {
-            playerMovement.movementEnabled = false;
-            playerMovement.animator.SetFloat("Horizontal", 0);
-            audioSource.PlayOneShot(crashSound);
-            once = false;
+            firstEvent = false;
+            eventHandler(crashSound);
             Invoke("mirar", 0.5f);
             Invoke("mirar2", 2);
             Invoke("texto", 2);
-            print("feo");
             Invoke("moverse", 4.5f);
         }
+        // Segundo evento
+        if (player.transform.position.x > 99.0f && secondEvent)
+        {
+            playerMovement.audioSource.Stop();
+            secondEvent = false;
+            eventHandler(creepyViolins);
+            Invoke("focusEnemy", 0.5f);
+            Invoke("startChasing", 4f);
+            Invoke("focusPlayer", 4.5f);
+            Invoke("moverse", 4.6f);
+        }
+    }
+
+    // Esta función prepara el evento que ha sido detectado en el Update() y se encarga de gestionar los sonidos y parar el movimiento del jugador
+    void eventHandler(AudioClip playAudio)
+    {
+        playerMovement.rb.velocity = new Vector2(0f, 0f);
+        playerMovement.movementEnabled = false;
+        playerMovement.animator.SetFloat("Horizontal", 0);
+        audioEffects.PlayOneShot(playAudio);
+    }
+
+    void startChasing()
+    {
+        audioMusic.loop = true;
+        audioMusic.clip = chasingViolins;
+        audioMusic.Play();
+        enemyChasing.canChase = true;
+    }
+
+    void focusPlayer()
+    {
+        cameraFollow.target = player.transform;
+    }
+
+    void focusEnemy()
+    {
+        cameraFollow.target = enemy.transform;
     }
 
     void mirar()

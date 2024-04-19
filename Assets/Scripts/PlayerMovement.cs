@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f; // Horizontal movement velocity
     public float jumpForce = 10f; // Jump force
     public float dashForce = 10f; // Dash force
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private bool isGrounded;
     [SerializeField] private bool isDashing = false;
     private float elapsedTime = 0f;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     //PRUEBA DE SONIDO
     [SerializeField] private AudioClip lvl1ambienceSound; // Sonido para cada letra
-    [SerializeField] private AudioSource audioSource; // AudioSource para reproducir el sonido
+    public AudioSource audioSource; // AudioSource para reproducir el sonido
     //PRUEBA DE SONIDO
 
     void Start()
