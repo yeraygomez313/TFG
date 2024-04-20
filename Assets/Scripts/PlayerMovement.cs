@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashForce = 10f; // Dash force
     public Rigidbody2D rb;
     private bool isGrounded;
+    private bool isFalling = false;
     [SerializeField] private bool isDashing = false;
     private float elapsedTime = 0f;
     private float dashingTime = 0.3f;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
             // Horizontal movement
             float moveInput = Input.GetAxis("Horizontal");
             animator.SetFloat("Horizontal", Math.Abs(moveInput));
+            animator.SetFloat("Vertical", rb.velocity.y);
             if (moveInput < 0)
             {
                 print("holaaa");
@@ -65,6 +67,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             }
+
+            //// Falling
+            //if (!isGrounded && !isDashing && rb.velocity.y < 0)
+            //{
+            //    animator.SetBool("isFalling", isFalling);
+            //}
+            //else
+            //{
+            //    animator.SetBool("isFalling", isFalling);
+            //}
 
             // Dash E
             if (Input.GetKeyDown(KeyCode.E) && !isGrounded && elapsedTime > 1f)
