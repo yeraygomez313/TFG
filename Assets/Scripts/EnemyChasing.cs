@@ -11,6 +11,7 @@ public class EnemyChasing : MonoBehaviour
     public float groundCheckRadius = 0.1f; // Radio del círculo de comprobación del suelo
     private bool isGrounded;
     public bool canChase = false;
+    public bool jumpscare = false;
 
     private Rigidbody2D rb;
 
@@ -52,6 +53,10 @@ public class EnemyChasing : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+        }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            jumpscare = true;
         }
     }
 

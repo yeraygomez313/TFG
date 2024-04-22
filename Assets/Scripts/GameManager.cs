@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,15 +11,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Camera cameraPlayer;
     [SerializeField] private CameraFollow cameraFollow;
     [SerializeField] private EnemyChasing enemyChasing;
+    [SerializeField] private GameObject jumpscareImage;
 
     [SerializeField] private AudioClip crashSound;
     [SerializeField] private AudioClip creepyViolins;
     [SerializeField] private AudioClip chasingViolins;
+    [SerializeField] private AudioClip jumpscareSound;
     [SerializeField] private AudioSource audioEffects;
     [SerializeField] private AudioSource audioMusic;
+    
 
     private bool firstEvent = true;
     private bool secondEvent = true;
+    private bool playOnce = true;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +54,12 @@ public class GameManager : MonoBehaviour
             Invoke("startChasing", 4f);
             Invoke("focusPlayer", 4.5f);
             Invoke("moverse", 4.6f);
+        }
+        if (enemyChasing.jumpscare && playOnce)
+        {
+            jumpscareImage.SetActive(true);
+            audioEffects.PlayOneShot(jumpscareSound);
+            playOnce = false;
         }
     }
 

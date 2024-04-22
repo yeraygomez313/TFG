@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isFalling = false;
     [SerializeField] private bool isDashing = false;
     private float elapsedTime = 0f;
-    private float dashingTime = 0.3f;
+    private float dashingTime = 0.4f;
     public SpriteRenderer playerSprite;
     [SerializeField] private bool onFloor;
     public bool movementEnabled = true;
