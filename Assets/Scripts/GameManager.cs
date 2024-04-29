@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraFollow cameraFollow;
     [SerializeField] private EnemyChasing enemyChasing;
     [SerializeField] private GameObject jumpscareImage;
-    [SerializeField] private GameObject parallax;
+    //[SerializeField] private GameObject parallax;
 
     [SerializeField] private AudioClip crashSound;
     [SerializeField] private AudioClip creepyViolins;
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        parallax.transform.position = new Vector3(playerMovement.transform.position.x, playerMovement.transform.position.y+3.5f, 0);
+        //parallax.transform.position = new Vector3(playerMovement.transform.position.x, playerMovement.transform.position.y+3.5f, 0);
 
         // Primer evento
         if (player.transform.position.x > 40.0f && firstEvent)

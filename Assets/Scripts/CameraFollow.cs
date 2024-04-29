@@ -8,14 +8,38 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed = 0.125f; // Velocidad de suavizado
     public Vector3 offset; // Distancia entre la cámara y el personaje
 
+    private float posX, posY, posX2, posY2;
+    [SerializeField] private float rightLimit, leftLimit, topLimit, botLimit;
+    Vector3 desiredPosition;
+
     void FixedUpdate()
     {
         // Calcula la posición a la que la cámara se moverá
-        Vector3 desiredPosition = target.position + offset;
+        //Vector3 desiredPosition = target.position + offset;
         // No cambia la posición en Z para mantener la cámara en 2D
-        desiredPosition.z = transform.position.z;
+        //desiredPosition.z = transform.position.z;
         // Interpola suavemente entre la posición actual de la cámara y la posición deseada
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        //Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        // Asigna la posición suavizada a la posición de la cámara
+        //transform.position = smoothedPosition;
+
+        posX = target.transform.position.x;
+        posY = target.transform.position.y;
+
+
+        if (target.transform.position.x > rightLimit && target.transform.position.x < leftLimit)
+        {
+            print("fueraaaaaa");
+            posX2 = posX;
+        }
+
+        /*if (target.transform.position.y > topLimit && target.transform.position.y < botLimit)
+        {
+            print("fuera arriba abajooo");
+            posY2 = posY;
+        }*/
+        print(posX + "  " + posY + "  " + posX2 + "  " + posY2);
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, new Vector3(posX2, target.transform.position.y + 1.5f, -1), smoothSpeed);
         // Asigna la posición suavizada a la posición de la cámara
         transform.position = smoothedPosition;
     }
