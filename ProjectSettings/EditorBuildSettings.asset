@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/InitialMenu.unity
     guid: 4cbae779836a390469d954f3a56c0c55
   - enabled: 1
-    path: Assets/Scenes/Mapeado.unity
+    path: Assets/Scenes/Nivel1.unity
     guid: ff2b3d0a38aa4e74590ee431216dedbe
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Nivel2.unity
     guid: 76206d850b6ae0245bceff8611d494d5
+  - enabled: 0
+    path: Assets/Scenes/Nivel3.unity
+    guid: c199efef7e0b2b94bb1beb0c4ff40101
   m_configObjects: {}
