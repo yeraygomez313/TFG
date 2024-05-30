@@ -18,6 +18,11 @@ public class SelfDialogue : MonoBehaviour
     private bool didDialogueStart;
     private int lineIndex;
 
+    private void Start()
+    {
+        dialogueText.color = Color.magenta;
+    }
+
     // Update is called once per frame
     void Update()
     {
