@@ -210,7 +210,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -272,6 +272,14 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 20
   dashForce: 15
+  rb: {fileID: 0}
+  isDashing: 0
+  playerSprite: {fileID: 0}
+  onFloor: 0
+  movementEnabled: 1
+  animator: {fileID: 0}
+  lvl1ambienceSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1315130126
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +344,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -483,3 +491,7 @@ MonoBehaviour:
   target: {fileID: 910872937}
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: 0}
+  rightLimit: 0
+  leftLimit: 0
+  topLimit: 0
+  botLimit: 0
