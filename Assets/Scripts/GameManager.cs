@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
             Invoke("moverse", 4.5f);
         }
         // Segundo evento
-        if (player.transform.position.x > 99.0f && secondEvent)
+        if (player.transform.position.x > 105.0f && secondEvent)
         {
             enemy.SetActive(true);
             playerMovement.audioSource.Stop();
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
             playOnce = false;
         }
         //Cambio de nivel
-        if (player.transform.position.x > 218.0f)
+        if (player.transform.position.x > 239.0f)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         }
