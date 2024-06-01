@@ -11,11 +11,27 @@ public class Level2Manager : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private Light2D lightEnemy;
 
+    [SerializeField] private AudioClip waterDrop1;
+    [SerializeField] private AudioClip waterDrop2;
+    [SerializeField] private AudioClip waterDrop3;
+    [SerializeField] private AudioClip doorClosingSound;
+    [SerializeField] private AudioClip backgroundDoorClosing;
+    [SerializeField] private AudioClip airHiss;
+    [SerializeField] private AudioClip lightBlink;
+    [SerializeField] private AudioSource audioEffects;
+    [SerializeField] private AudioSource audioEffects2;
+    [SerializeField] private AudioSource audioEffects3;
+    [SerializeField] private AudioSource audioMusic;
+    [SerializeField] private AudioSource audioMusic2;
+    [SerializeField] private AudioSource audioMusic3;
+    [SerializeField] private AudioSource audioMusic4;
+
     private bool firstEvent = true;
     private bool secondEvent = true;
     private bool doorClosing = false;
     private bool enemyMoving = false;
     private bool lightBlinks = false;
+    private bool playOnce = true; //Play once the air hissing sound
 
     private float smoothSpeed = 0.01f;
 
@@ -27,6 +43,8 @@ public class Level2Manager : MonoBehaviour
     {
         doorTargetPosition = new Vector3(door.transform.position.x, 7.36f, door.transform.position.z);
         enemyTargetPosition = new Vector3(55.15f, enemy.transform.position.y, enemy.transform.position.z);
+        
+        
     }
 
     // Update is called once per frame
@@ -36,7 +54,6 @@ public class Level2Manager : MonoBehaviour
         //Primer evento de cerrar puerta
         if (player.transform.position.x < 29f && firstEvent)
         {
-            Debug.Log("activo el evento");
             firstEvent = false;
             Invoke("StartClosingDoor", 0.5f);
         }
@@ -49,6 +66,8 @@ public class Level2Manager : MonoBehaviour
                 door.transform.position = doorTargetPosition;
                 doorClosing = false;
                 playerMovement.movementEnabled = true;
+                audioEffects3.clip = airHiss;
+                audioEffects3.Play();   //HACER QUE ESTO SUENE ANTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEES
             }
         }
 
@@ -61,6 +80,7 @@ public class Level2Manager : MonoBehaviour
 
         if (enemyMoving)
         {
+
             enemy.transform.position = Vector3.Lerp(enemy.transform.position, enemyTargetPosition, smoothSpeed);
             if (Vector3.Distance(enemy.transform.position, enemyTargetPosition) < 0.3f)
             {
@@ -75,6 +95,8 @@ public class Level2Manager : MonoBehaviour
         {
             lightBlinks = false;
             lightEnemy.intensity = 0.65f;
+            audioEffects.clip = lightBlink;
+            audioEffects.Play();
             Invoke("enableEnemyLight", .25f);
             Invoke("disableEnemyLight", .5f);
             Invoke("enableEnemyLight", .75f);
@@ -92,6 +114,10 @@ public class Level2Manager : MonoBehaviour
         playerMovement.rb.velocity = new Vector2(0f, 0f);
         playerMovement.movementEnabled = false;
         playerMovement.animator.SetFloat("Horizontal", 0);
+        audioEffects.clip = doorClosingSound;
+        audioEffects.Play();
+        audioEffects2.clip = backgroundDoorClosing;
+        audioEffects2.Play();
     }
 
     void StartMovingEnemy()
