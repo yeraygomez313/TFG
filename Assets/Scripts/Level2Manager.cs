@@ -4,37 +4,50 @@ using UnityEngine;
 
 public class Level2Manager : MonoBehaviour
 {
+    [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject door;
 
     private bool firstEvent = true;
+    private bool doorClosing = false;
+    private float smoothSpeed = 0.01f;
+
+    private Vector3 doorTargetPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        doorTargetPosition = new Vector3(door.transform.position.x, 7.36f, door.transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player.transform.position.x < 27.0f && firstEvent)
+        if (player.transform.position.x < 29f && firstEvent)
         {
             Debug.Log("activo el evento");
             firstEvent = false;
-            Invoke("CloseDoor", 0.5f);
+            Invoke("StartClosingDoor", 0.5f);
+        }
+
+        if (doorClosing)
+        {
+            door.transform.position = Vector3.Lerp(door.transform.position, doorTargetPosition, smoothSpeed);
+            if (Vector3.Distance(door.transform.position, doorTargetPosition) < 0.01f)
+            {
+                door.transform.position = doorTargetPosition;
+                doorClosing = false;
+                playerMovement.movementEnabled = true;
+            }
         }
     }
 
-    void CloseDoor()
+    void StartClosingDoor()
     {
         Debug.Log("ejecuto el evento");
-        //door.transform.position = Vector3.Lerp(door.transform.position, new Vector3(door.transform.position.x, 20f, door.transform.position.z), 1.0f);
-
-        //door.transform.position = Vector3.Lerp(door.transform.position, new Vector3(door.transform.position.x, 20.0f + .75f, door.transform.position.z), .01f);
-
-        Vector3 targetPosition = new Vector3(door.transform.position.x, -100.0f, door.transform.position.z);
-        door.transform.position = Vector3.Lerp(door.transform.position, targetPosition, .01f);
-
+        doorClosing = true;
+        playerMovement.rb.velocity = new Vector2(0f, 0f);
+        playerMovement.movementEnabled = false;
+        playerMovement.animator.SetFloat("Horizontal", 0);
     }
 }
