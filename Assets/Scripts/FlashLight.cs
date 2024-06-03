@@ -20,6 +20,7 @@ public class FlashLight : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerFlashlight.intensity = 1;
+            ManageEnergyFlashLight.startManagement = true;
             flashlight.SetActive(false);
         }
     }
