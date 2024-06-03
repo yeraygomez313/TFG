@@ -9,6 +9,8 @@ public class Level2Manager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject door;
     [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject flashlight;
+
     [SerializeField] private Light2D lightEnemy;
 
     [SerializeField] private AudioClip waterDrop1;
@@ -37,6 +39,8 @@ public class Level2Manager : MonoBehaviour
 
     private Vector3 doorTargetPosition;
     private Vector3 enemyTargetPosition;
+
+    public bool playerLight = false;
 
     // Start is called before the first frame update
     void Start()
@@ -116,8 +120,14 @@ public class Level2Manager : MonoBehaviour
         playerMovement.animator.SetFloat("Horizontal", 0);
         audioEffects.clip = doorClosingSound;
         audioEffects.Play();
+        Invoke("StopDoorSound", 3.5f);
         audioEffects2.clip = backgroundDoorClosing;
         audioEffects2.Play();
+    }
+
+    void StopDoorSound()
+    {
+        audioEffects.Stop();
     }
 
     void StartMovingEnemy()
@@ -141,5 +151,6 @@ public class Level2Manager : MonoBehaviour
     void enemyDisappear()
     {
         enemy.SetActive(false);
+        flashlight.SetActive(true);
     }
 }
