@@ -42,18 +42,33 @@ public class Level2Manager : MonoBehaviour
 
     public bool playerLight = false;
 
+
+    //PRUEBA DE MENÚ DESPLEGABLE
+    //public GameObject menuPanel; // Panel del menú
+    //private bool isPaused = false;
+    //PRUEBA DE MENÚ DESPLEGABLE
+
+
     // Start is called before the first frame update
     void Start()
     {
         doorTargetPosition = new Vector3(door.transform.position.x, 7.36f, door.transform.position.z);
         enemyTargetPosition = new Vector3(55.15f, enemy.transform.position.y, enemy.transform.position.z);
         
-        
+        //PRUEBA DE MENÚ DESPLEGABLE
+        //menuPanel.SetActive(false);
+        //PRUEBA DE MENÚ DESPLEGABLE
     }
 
     // Update is called once per frame
     void Update()
     {
+        //PRUEBA DE MENÚ DESPLEGABLE
+        //if (isPaused && Input.GetMouseButtonDown(0))
+        //{
+        //    ResumeGame();
+        //}
+        //PRUEBA DE MENÚ DESPLEGABLE
 
         //Primer evento de cerrar puerta
         if (player.transform.position.x < 29f && firstEvent)
@@ -110,6 +125,28 @@ public class Level2Manager : MonoBehaviour
             Invoke("enemyDisappear", 1.5f);
         }
     }
+
+    //PRUEBA DE MENÚ DESPLEGABLE
+    //public void ShowMenu()
+    //{
+    //    isPaused = true;
+    //    menuPanel.SetActive(true);
+    //    Time.timeScale = 0f; // Pausa el juego
+    //}
+
+    //public void ResumeGame()
+    //{
+    //    isPaused = false;
+    //    menuPanel.SetActive(false);
+    //    Time.timeScale = 1f; // Reanuda el juego
+    //}
+
+    //// Llama a este método cuando cojas un objeto
+    //public void OnObjectPicked()
+    //{
+    //    ShowMenu();
+    //}
+    //PRUEBA DE MENÚ DESPLEGABLE
 
     void StartClosingDoor()
     {

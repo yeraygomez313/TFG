@@ -21,6 +21,7 @@ public class FlashLight : MonoBehaviour
         {
             playerFlashlight.intensity = 1;
             ManageEnergyFlashLight.startManagement = true;
+            RuneDialogue.showRune = true;
             flashlight.SetActive(false);
         }
     }
