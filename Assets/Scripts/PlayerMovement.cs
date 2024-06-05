@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     {
         elapsedTime += Time.deltaTime;
 
-        print(movementEnabled);
+        //print(movementEnabled);
 
         if (movementEnabled) {
             // Horizontal movement
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Vertical", rb.velocity.y);
             if (moveInput < 0)
             {
-                print("holaaa");
+                //print("holaaa");
                 playerSprite.flipX = true;
             }
             else if (moveInput > 0)

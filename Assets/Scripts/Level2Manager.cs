@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using TMPro;
 
 public class Level2Manager : MonoBehaviour
 {
@@ -28,14 +29,22 @@ public class Level2Manager : MonoBehaviour
     [SerializeField] private AudioSource audioMusic3;
     [SerializeField] private AudioSource audioMusic4;
 
+    public GameObject batteryPanelInspector;
+    public TMP_Text batteryTextInspector;
+    public static GameObject batteryPanel;
+    public static TMP_Text batteryText;
+
     private bool firstEvent = true;
     private bool secondEvent = true;
     private bool doorClosing = false;
     private bool enemyMoving = false;
     private bool lightBlinks = false;
     private bool playOnce = true; //Play once the air hissing sound
+    
+    public static bool turnOffMessage = false;
 
     private float smoothSpeed = 0.01f;
+    public static int batteries = 4;
 
     private Vector3 doorTargetPosition;
     private Vector3 enemyTargetPosition;
@@ -54,7 +63,9 @@ public class Level2Manager : MonoBehaviour
     {
         doorTargetPosition = new Vector3(door.transform.position.x, 7.36f, door.transform.position.z);
         enemyTargetPosition = new Vector3(55.15f, enemy.transform.position.y, enemy.transform.position.z);
-        
+
+        batteryPanel = batteryPanelInspector;
+        batteryText = batteryTextInspector;
         //PRUEBA DE MENÚ DESPLEGABLE
         //menuPanel.SetActive(false);
         //PRUEBA DE MENÚ DESPLEGABLE
@@ -116,13 +127,19 @@ public class Level2Manager : MonoBehaviour
             lightEnemy.intensity = 0.65f;
             audioEffects.clip = lightBlink;
             audioEffects.Play();
-            Invoke("enableEnemyLight", .25f);
-            Invoke("disableEnemyLight", .5f);
-            Invoke("enableEnemyLight", .75f);
-            Invoke("disableEnemyLight", 1f);
-            Invoke("enableEnemyLight", 1.25f);
-            Invoke("disableEnemyLight", 1.5f);
-            Invoke("enemyDisappear", 1.5f);
+            Invoke("EnableEnemyLight", .25f);
+            Invoke("DisableEnemyLight", .5f);
+            Invoke("EnableEnemyLight", .75f);
+            Invoke("DisableEnemyLight", 1f);
+            Invoke("EnableEnemyLight", 1.25f);
+            Invoke("DisableEnemyLight", 1.5f);
+            Invoke("EnemyDisappear", 1.5f);
+        }
+
+        if (turnOffMessage)
+        {
+            turnOffMessage = false;
+            Invoke("DisableBatteryMessage", 4.0f);
         }
     }
 
@@ -175,19 +192,38 @@ public class Level2Manager : MonoBehaviour
         playerMovement.animator.SetFloat("Horizontal", 0);
     }
 
-    void enableEnemyLight()
+    void EnableEnemyLight()
     {
         lightEnemy.intensity = 0.65f;
     }
 
-    void disableEnemyLight()
+    void DisableEnemyLight()
     {
         lightEnemy.intensity = 0f;
     }
 
-    void enemyDisappear()
+    void EnemyDisappear()
     {
         enemy.SetActive(false);
         flashlight.SetActive(true);
     }
+
+    public static void ShowBatteryMessage()
+    {
+        if (batteries > 1)
+            batteryText.text = "There are " + batteries + " batteries left";
+        else if (batteries == 1)
+            batteryText.text = "There is " + batteries + " battery left";
+        else
+            batteryText.text = "You got all the batteries";
+
+        batteryPanel.SetActive(true);
+        turnOffMessage = true;
+    }
+
+    void DisableBatteryMessage()
+    {
+        batteryPanel.SetActive(false);
+    }
+
 }
