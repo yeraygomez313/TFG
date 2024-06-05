@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Battery : MonoBehaviour
 {
+    [SerializeField] private GameObject battery;
+
     [SerializeField] private float amplitude = 0.5f; // Amplitud del movimiento (qué tan alto/sube bajo)
     [SerializeField] private float speed = 1.0f; // Velocidad del movimiento
 
@@ -22,5 +24,15 @@ public class Battery : MonoBehaviour
 
         // Actualiza la posición del GameObject
         transform.position = new Vector3(startPosition.x, yPos, startPosition.z);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            ManageEnergyFlashLight.increaseRadius = true;
+            battery.SetActive(false);
+        }
+            
     }
 }

@@ -20,6 +20,8 @@ public class FlashLight : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerFlashlight.intensity = 1;
+            ManageEnergyFlashLight.startManagement = true;
+            RuneDialogue.showRune = true;
             flashlight.SetActive(false);
         }
     }
