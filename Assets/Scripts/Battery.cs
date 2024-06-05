@@ -31,6 +31,8 @@ public class Battery : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             ManageEnergyFlashLight.increaseRadius = true;
+            Level2Manager.batteries--;
+            Level2Manager.ShowBatteryMessage();
             battery.SetActive(false);
         }
             

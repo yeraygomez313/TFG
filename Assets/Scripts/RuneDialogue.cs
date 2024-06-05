@@ -25,7 +25,7 @@ public class RuneDialogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogueText.color = Color.white;
+        dialogueText.color = Color.black;
     }
 
     // Update is called once per frame
@@ -48,7 +48,7 @@ public class RuneDialogue : MonoBehaviour
                 {
                     StopAllCoroutines();
                     dialogueText.text = dialogueLines[lineIndex];
-                    showRune = false;
+                    
                 }
             }
         }
@@ -76,6 +76,7 @@ public class RuneDialogue : MonoBehaviour
             didDialogueStart = false;
             dialoguePanel.SetActive(false);
             Time.timeScale = 1f;
+            showRune = false;
         }
     }
 

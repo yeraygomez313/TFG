@@ -29,7 +29,7 @@ public class CameraFollow : MonoBehaviour
 
         if (target.transform.position.x > rightLimit && target.transform.position.x < leftLimit)
         {
-            print("fueraaaaaa");
+            //print("fueraaaaaa");
             posX2 = posX;
         }
 
@@ -38,7 +38,7 @@ public class CameraFollow : MonoBehaviour
             print("fuera arriba abajooo");
             posY2 = posY;
         }*/
-        print(posX + "  " + posY + "  " + posX2 + "  " + posY2);
+        //print(posX + "  " + posY + "  " + posX2 + "  " + posY2);
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, new Vector3(posX2, target.transform.position.y + 1.5f, -1), smoothSpeed);
         // Asigna la posición suavizada a la posición de la cámara
         transform.position = smoothedPosition;

@@ -30,6 +30,7 @@ public class ManageEnergyFlashLight : MonoBehaviour
 
             if (increaseRadius)
             {
+                increaseRadius = false;
                 playerFlashlight.pointLightInnerRadius = 3f;
                 playerFlashlight.pointLightOuterRadius = 4f;
             }
