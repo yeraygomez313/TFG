@@ -42,6 +42,7 @@ public class Level2Manager : MonoBehaviour
     private bool playOnce = true; //Play once the air hissing sound
     
     public static bool turnOffMessage = false;
+    public static bool flashlightEnergyDied = false;
 
     private float smoothSpeed = 0.01f;
     public static int batteries = 4;
@@ -84,6 +85,7 @@ public class Level2Manager : MonoBehaviour
         //Primer evento de cerrar puerta
         if (player.transform.position.x < 29f && firstEvent)
         {
+            print("primer evento");
             firstEvent = false;
             Invoke("StartClosingDoor", 0.5f);
         }
@@ -105,7 +107,7 @@ public class Level2Manager : MonoBehaviour
         if (player.transform.position.x > 49f && secondEvent)
         {
             secondEvent = false;
-            Invoke("StartMovingEnemy", 0.5f);
+            Invoke("StartMovingEnemy", .5f);
         }
 
         if (enemyMoving)
@@ -116,7 +118,6 @@ public class Level2Manager : MonoBehaviour
             {
                 enemy.transform.position = enemyTargetPosition;
                 enemyMoving = false;
-                playerMovement.movementEnabled = true;
                 lightBlinks = true;
             }
         }
@@ -140,6 +141,12 @@ public class Level2Manager : MonoBehaviour
         {
             turnOffMessage = false;
             Invoke("DisableBatteryMessage", 4.0f);
+        }
+        Debug.Log("este: " + flashlightEnergyDied);
+        if (flashlightEnergyDied)
+        {
+            flashlightEnergyDied = false;
+            StartCoroutine(FlashlightEnergyDied());
         }
     }
 
@@ -206,6 +213,7 @@ public class Level2Manager : MonoBehaviour
     {
         enemy.SetActive(false);
         flashlight.SetActive(true);
+        playerMovement.movementEnabled = true;
     }
 
     public static void ShowBatteryMessage()
@@ -226,4 +234,18 @@ public class Level2Manager : MonoBehaviour
         batteryPanel.SetActive(false);
     }
 
+    private IEnumerator FlashlightEnergyDied()
+    {
+        yield return new WaitForSeconds(2.0f);
+        playerMovement.rb.velocity = new Vector2(0f, 0f);
+        playerMovement.movementEnabled = false;
+        playerMovement.animator.SetFloat("Horizontal", 0);
+        //Sonido de miedo que acompañe los movimientos del enemigo
+        enemy.SetActive(true);
+        enemy.transform.position = new Vector3(player.transform.position.x + 5.0f, player.transform.position.y, enemy.transform.position.z);
+        yield return new WaitForSeconds(.5f);
+        enemy.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 5.0f, enemy.transform.position.z);
+        yield return new WaitForSeconds(.5f);
+        enemy.transform.position = new Vector3(player.transform.position.x - 5.0f, player.transform.position.y, enemy.transform.position.z);
+    }
 }

@@ -26,6 +26,7 @@ public class ManageEnergyFlashLight : MonoBehaviour
             if (playerFlashlight.pointLightInnerRadius <= 0 && playerFlashlight.pointLightOuterRadius <= 0)
             {
                 startManagement = false;
+                Level2Manager.flashlightEnergyDied = true;
             }
 
             if (increaseRadius)
@@ -34,6 +35,7 @@ public class ManageEnergyFlashLight : MonoBehaviour
                 playerFlashlight.pointLightInnerRadius = 3f;
                 playerFlashlight.pointLightOuterRadius = 4f;
             }
+
         }
     }
 }
