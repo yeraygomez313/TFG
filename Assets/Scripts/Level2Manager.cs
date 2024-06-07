@@ -247,5 +247,8 @@ public class Level2Manager : MonoBehaviour
         enemy.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 5.0f, enemy.transform.position.z);
         yield return new WaitForSeconds(.5f);
         enemy.transform.position = new Vector3(player.transform.position.x - 5.0f, player.transform.position.y, enemy.transform.position.z);
+        yield return new WaitForSeconds(.5f);
+        enemy.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, enemy.transform.position.z);
+        enemy.transform.localScale *= 5f;
     }
 }
