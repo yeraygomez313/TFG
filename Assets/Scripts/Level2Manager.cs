@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Level2Manager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Level2Manager : MonoBehaviour
     [SerializeField] private GameObject door;
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject flashlight;
+
+    private SpriteRenderer enemySprite;
 
     [SerializeField] private Light2D lightEnemy;
 
@@ -21,6 +24,9 @@ public class Level2Manager : MonoBehaviour
     [SerializeField] private AudioClip backgroundDoorClosing;
     [SerializeField] private AudioClip airHiss;
     [SerializeField] private AudioClip lightBlink;
+    [SerializeField] private AudioClip monsterGrowl;
+    [SerializeField] private AudioClip monsterSteps;
+    [SerializeField] private AudioClip monsterJumpscare;
     [SerializeField] private AudioSource audioEffects;
     [SerializeField] private AudioSource audioEffects2;
     [SerializeField] private AudioSource audioEffects3;
@@ -67,6 +73,8 @@ public class Level2Manager : MonoBehaviour
 
         batteryPanel = batteryPanelInspector;
         batteryText = batteryTextInspector;
+
+        enemySprite = enemy.GetComponent<SpriteRenderer>();
         //PRUEBA DE MENÚ DESPLEGABLE
         //menuPanel.SetActive(false);
         //PRUEBA DE MENÚ DESPLEGABLE
@@ -112,7 +120,8 @@ public class Level2Manager : MonoBehaviour
 
         if (enemyMoving)
         {
-
+            audioEffects3.clip = monsterGrowl;
+            audioEffects3.Play();
             enemy.transform.position = Vector3.Lerp(enemy.transform.position, enemyTargetPosition, smoothSpeed);
             if (Vector3.Distance(enemy.transform.position, enemyTargetPosition) < 0.3f)
             {
@@ -128,6 +137,7 @@ public class Level2Manager : MonoBehaviour
             lightEnemy.intensity = 0.65f;
             audioEffects.clip = lightBlink;
             audioEffects.Play();
+            
             Invoke("EnableEnemyLight", .25f);
             Invoke("DisableEnemyLight", .5f);
             Invoke("EnableEnemyLight", .75f);
@@ -236,19 +246,36 @@ public class Level2Manager : MonoBehaviour
 
     private IEnumerator FlashlightEnergyDied()
     {
-        yield return new WaitForSeconds(2.0f);
+        enemySprite.sortingLayerName = "Frontground";
         playerMovement.rb.velocity = new Vector2(0f, 0f);
         playerMovement.movementEnabled = false;
         playerMovement.animator.SetFloat("Horizontal", 0);
+        yield return new WaitForSeconds(2.0f);
+        audioEffects3.clip = monsterSteps;
+        audioEffects3.Play();
+        yield return new WaitForSeconds(8.0f);
         //Sonido de miedo que acompañe los movimientos del enemigo
         enemy.SetActive(true);
         enemy.transform.position = new Vector3(player.transform.position.x + 5.0f, player.transform.position.y, enemy.transform.position.z);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.1f);
         enemy.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 5.0f, enemy.transform.position.z);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.1f);
         enemy.transform.position = new Vector3(player.transform.position.x - 5.0f, player.transform.position.y, enemy.transform.position.z);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.1f);
         enemy.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, enemy.transform.position.z);
         enemy.transform.localScale *= 5f;
+        audioEffects3.Stop();
+        audioEffects3.clip = monsterJumpscare;
+        audioEffects3.Play();
+        yield return new WaitForSeconds(.1f);
+        enemy.SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        enemy.SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        enemy.SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        enemy.SetActive(true);
+        yield return new WaitForSeconds(.25f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

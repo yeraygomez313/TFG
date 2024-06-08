@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
             jumpscareImage.SetActive(true);
             audioEffects.PlayOneShot(jumpscareSound);
             playOnce = false;
+            Invoke("RestartScene", 3.0f);
         }
         //Cambio de nivel
         if (player.transform.position.x > 239.0f)
@@ -127,4 +128,8 @@ public class GameManager : MonoBehaviour
         playerMovement.movementEnabled = true;
     }
 
+    void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

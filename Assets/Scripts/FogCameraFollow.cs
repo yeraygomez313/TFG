@@ -6,7 +6,7 @@ public class FogCameraFollow : MonoBehaviour
 {
     [SerializeField] private CameraFollow cameraFollow;
 
-    private float smoothSpeed = .01f;
+    private float smoothSpeed = .05f;
 
     // Start is called before the first frame update
     void Start()
