@@ -55,7 +55,7 @@ public class PauseMenu : MonoBehaviour
     public void Lvl3()
     {
         // Reanuda el tiempo antes de cargar la escena
-        //Time.timeScale = 1f;
-        //SceneManager.LoadScene(4);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(4);
     }
 }

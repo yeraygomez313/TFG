@@ -13,6 +13,7 @@ public class ManageEnergyFlashLight : MonoBehaviour
 
     [SerializeField] private Image rechargeImage;
 
+    private bool showRechargeImage = true;
     private bool playOnce = true;
 
     public static bool startManagement = false;
@@ -23,10 +24,16 @@ public class ManageEnergyFlashLight : MonoBehaviour
     {
         if (startManagement)
         {
-            if (playOnce)
+            if (showRechargeImage)
+            {
+                showRechargeImage = false;
+                rechargeImage.gameObject.SetActive(true);
+            }
+
+            if (Level2Manager.batteries == 0 && playOnce)
             {
                 playOnce = false;
-                rechargeImage.gameObject.SetActive(true);
+                startManagement = false;
             }
             
             // Reducir gradualmente los radios inner y outer de la linterna

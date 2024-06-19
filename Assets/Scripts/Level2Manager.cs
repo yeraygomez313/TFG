@@ -12,6 +12,7 @@ public class Level2Manager : MonoBehaviour
     [SerializeField] private GameObject door;
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject flashlight;
+    [SerializeField] private Camera cameraPlayer;
 
     private SpriteRenderer enemySprite;
 
@@ -46,6 +47,8 @@ public class Level2Manager : MonoBehaviour
     private bool enemyMoving = false;
     private bool lightBlinks = false;
     private bool playOnce = true; //Play once the air hissing sound
+    private bool zoominCamera = false;
+    private bool secondMove = false;
     
     public static bool turnOffMessage = false;
     public static bool flashlightEnergyDied = false;
@@ -55,6 +58,7 @@ public class Level2Manager : MonoBehaviour
 
     private Vector3 doorTargetPosition;
     private Vector3 enemyTargetPosition;
+    private Vector3 newEnemyPosition;
 
     public bool playerLight = false;
 
@@ -158,6 +162,33 @@ public class Level2Manager : MonoBehaviour
             flashlightEnergyDied = false;
             StartCoroutine(FlashlightEnergyDied());
         }
+
+        if (player.transform.position.x > 133 && playOnce)
+        {
+            playOnce = false;
+            StartCoroutine(EnemyRunning());
+        }
+
+        if (zoominCamera)
+        {
+            cameraPlayer.orthographicSize = cameraPlayer.orthographicSize = Mathf.Lerp(cameraPlayer.orthographicSize, cameraPlayer.orthographicSize + 2f, Time.deltaTime / 2.0f);
+            if (cameraPlayer.orthographicSize >= 9.0f)
+                zoominCamera = false;
+        }
+
+        if (secondMove)
+        {
+            enemy.transform.position = Vector3.Lerp(enemy.transform.position, newEnemyPosition, 0.005f);
+            if (Vector3.Distance(enemy.transform.position, newEnemyPosition) < 0.3f)
+            {
+                enemy.transform.position = newEnemyPosition;
+                secondMove = false;
+            }
+        }
+            
+        if (player.transform.position.x > 176f && player.transform.position.y < 19f)
+            SceneManager.LoadScene(4);
+
     }
 
     //PRUEBA DE MENÚ DESPLEGABLE
@@ -244,6 +275,20 @@ public class Level2Manager : MonoBehaviour
         batteryPanel.SetActive(false);
     }
 
+    private void ControlPlayerMovement(bool continueMoving)
+    {
+        if (continueMoving)
+        {
+            playerMovement.movementEnabled = true;
+        }
+        else
+        {
+            playerMovement.rb.velocity = new Vector2(0f, 0f);
+            playerMovement.movementEnabled = false;
+            playerMovement.animator.SetFloat("Horizontal", 0);
+        }
+    }
+
     private IEnumerator FlashlightEnergyDied()
     {
         enemySprite.sortingLayerName = "Frontground";
@@ -277,5 +322,32 @@ public class Level2Manager : MonoBehaviour
         enemy.SetActive(true);
         yield return new WaitForSeconds(.25f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private IEnumerator EnemyRunning()
+    {
+        //ControlPlayerMovement(false);
+        zoominCamera = true;
+        //cameraPlayer.orthographicSize = cameraPlayer.orthographicSize = Mathf.Lerp(cameraPlayer.orthographicSize, cameraPlayer.orthographicSize + 2f, Time.deltaTime / 2.0f);
+        yield return new WaitForSeconds(4.0f);
+        cameraPlayer.orthographicSize = 9.0f;
+        //ControlPlayerMovement(true);
+        enemy.SetActive(true);
+        enemy.transform.position = new Vector3(121.13f, 36.33f, 0f);
+        enemySprite.flipX = false;
+
+        yield return new WaitForSeconds(4.0f);
+
+        newEnemyPosition = new Vector3(194.64f, enemy.transform.position.y, enemy.transform.position.z);
+
+
+        secondMove = true;
+        
+
+
+        //while (Vector3.Distance(enemy.transform.position, newEnemyPosition) > 0.3f)
+        //    enemy.transform.position = Vector3.Lerp(enemy.transform.position, newEnemyPosition, smoothSpeed);
+        yield return new WaitForSeconds(4.0f);
+        //enemy.transform.position = newEnemyPosition;
     }
 }
