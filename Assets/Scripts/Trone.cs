@@ -6,6 +6,8 @@ public class Trone : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
 
+    private bool playOnce = true;
+
     void Update()
     {
 
@@ -13,8 +15,9 @@ public class Trone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && playOnce)
         {
+            playOnce = false;
             panel.SetActive(true);
             RuneDialogue.showRune = true;
         }
