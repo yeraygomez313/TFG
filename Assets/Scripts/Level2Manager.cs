@@ -17,6 +17,7 @@ public class Level2Manager : MonoBehaviour
     private SpriteRenderer enemySprite;
 
     [SerializeField] private Light2D lightEnemy;
+    [SerializeField] private Light2D globalLight;
 
     [SerializeField] private AudioClip waterDrop1;
     [SerializeField] private AudioClip waterDrop2;
@@ -28,6 +29,8 @@ public class Level2Manager : MonoBehaviour
     [SerializeField] private AudioClip monsterGrowl;
     [SerializeField] private AudioClip monsterSteps;
     [SerializeField] private AudioClip monsterJumpscare;
+    [SerializeField] private AudioClip monsterRunning;
+    [SerializeField] private AudioClip monsterRunningViolin;
     [SerializeField] private AudioSource audioEffects;
     [SerializeField] private AudioSource audioEffects2;
     [SerializeField] private AudioSource audioEffects3;
@@ -342,8 +345,18 @@ public class Level2Manager : MonoBehaviour
 
 
         secondMove = true;
-        
-
+        yield return new WaitForSeconds(.2f);
+        audioEffects2.clip = monsterRunning;
+        audioEffects3.clip = monsterRunningViolin;
+        audioEffects2.Play();
+        audioEffects3.Play();
+        globalLight.intensity = 1f;
+        yield return new WaitForSeconds(.05f);
+        globalLight.intensity = .0f;
+        yield return new WaitForSeconds(.05f);
+        globalLight.intensity = 1f;
+        yield return new WaitForSeconds(.05f);
+        globalLight.intensity = .1f;
 
         //while (Vector3.Distance(enemy.transform.position, newEnemyPosition) > 0.3f)
         //    enemy.transform.position = Vector3.Lerp(enemy.transform.position, newEnemyPosition, smoothSpeed);
