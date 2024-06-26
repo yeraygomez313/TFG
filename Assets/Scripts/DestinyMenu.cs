@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DestinyMenu : MonoBehaviour
 {
@@ -8,13 +9,11 @@ public class DestinyMenu : MonoBehaviour
 
     public void Sit()
     {
-        print("me siento");
-
+        SceneManager.LoadScene(6);
     }
 
     public void NotSit()
     {
-        print("no me siento");
         Level3Manager.badEnding = true;
         destinyMenu.SetActive(false);
     }

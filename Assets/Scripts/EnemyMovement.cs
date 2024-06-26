@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
         // Comprobar si el enemigo ha entrado en el área de la luz
         if (collision.CompareTag("Player"))
         {
-            print("te mato");
+            SceneManager.LoadScene(5);
         }
     }
 }
