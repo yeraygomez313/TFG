@@ -57,7 +57,7 @@ public class Level2Manager : MonoBehaviour
     public static bool flashlightEnergyDied = false;
 
     private float smoothSpeed = 0.01f;
-    public static int batteries = 4;
+    public static int batteries;
 
     private Vector3 doorTargetPosition;
     private Vector3 enemyTargetPosition;
@@ -75,6 +75,7 @@ public class Level2Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        batteries = 4;
         doorTargetPosition = new Vector3(door.transform.position.x, 7.36f, door.transform.position.z);
         enemyTargetPosition = new Vector3(55.15f, enemy.transform.position.y, enemy.transform.position.z);
 
