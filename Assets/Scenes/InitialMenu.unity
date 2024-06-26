@@ -1637,7 +1637,7 @@ GameObject:
   - component: {fileID: 645216168}
   - component: {fileID: 645216167}
   m_Layer: 5
-  m_Name: Credits
+  m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1683,7 +1683,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 89a4585bb9c30bd4e936c7259715b93f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aac8115a8572c50478134ed746ea2236, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2788,7 +2788,7 @@ GameObject:
   - component: {fileID: 1696111649}
   - component: {fileID: 1696111648}
   m_Layer: 5
-  m_Name: Credits
+  m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
