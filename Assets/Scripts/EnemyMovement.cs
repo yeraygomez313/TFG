@@ -24,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
         // Comprobar si el enemigo ha entrado en el área de la luz
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene(6);
         }
     }
 }

@@ -9,7 +9,7 @@ public class DestinyMenu : MonoBehaviour
 
     public void Sit()
     {
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(5);
     }
 
     public void NotSit()
