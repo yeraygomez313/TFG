@@ -20,6 +20,7 @@ public class Trone : MonoBehaviour
             playOnce = false;
             panel.SetActive(true);
             RuneDialogue.showRune = true;
+            Level3Manager.move = true;
         }
     }
 }

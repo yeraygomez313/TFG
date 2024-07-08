@@ -101,13 +101,13 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // It is needed to make a progressive transition, a cooldown and blocking the controls.
-            if (Input.GetKeyDown(KeyCode.W) && isGrounded && rb.velocity.x == 0f && elapsedTime > 3f)
+            /*if (Input.GetKeyDown(KeyCode.W) && isGrounded && rb.velocity.x == 0f && elapsedTime > 3f)
             {
                 Color newColor = playerSprite.color;
                 newColor.a = 0.3f;
                 playerSprite.color = newColor;
                 elapsedTime = 0f;
-            }
+            }*/
 
             // Changes the opacity to the original opacity
             if (elapsedTime > 3f)

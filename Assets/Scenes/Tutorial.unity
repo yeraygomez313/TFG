@@ -699,7 +699,7 @@ AudioSource:
   m_GameObject: {fileID: 777886203}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: e0c8aa6f8694287499b12e9af4549fe7, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1049,7 +1049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 469696492053019643, guid: 252c3edb81cd88e42a98a5a3f9998519, type: 3}
       propertyPath: dialogueLines.Array.data[5]
-      value: '"Q" DASHESH LEFT, "E" DASHESH RIGHT.'
+      value: '"Q" DASHESH LEFT, "E" DASHES RIGHT.'
       objectReference: {fileID: 0}
     - target: {fileID: 469696492053019644, guid: 252c3edb81cd88e42a98a5a3f9998519, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x

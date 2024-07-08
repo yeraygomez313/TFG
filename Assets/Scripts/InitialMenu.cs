@@ -17,8 +17,6 @@ public class InitialMenu : MonoBehaviour
 
     public void Exit()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
-        /*Debug.Log("Salió del juego.");
-        Application.Quit();*/
+        Application.Quit();
     }
 }
