@@ -9,6 +9,7 @@ public class Level2Manager : MonoBehaviour
 {
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playerLight2D;
     [SerializeField] private GameObject door;
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject flashlight;
@@ -50,6 +51,7 @@ public class Level2Manager : MonoBehaviour
     private bool enemyMoving = false;
     private bool lightBlinks = false;
     private bool playOnce = true; //Play once the air hissing sound
+    private bool playOnce2 = true;
     private bool zoominCamera = false;
     private bool secondMove = false;
     
@@ -172,6 +174,9 @@ public class Level2Manager : MonoBehaviour
             playOnce = false;
             StartCoroutine(EnemyRunning());
         }
+
+        if (player.transform.position.x > 123.0f && playOnce2)
+            playerLight2D.SetActive(false);
 
         if (zoominCamera)
         {
