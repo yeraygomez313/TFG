@@ -19,6 +19,7 @@ public class Level2Manager : MonoBehaviour
 
     [SerializeField] private Light2D lightEnemy;
     [SerializeField] private Light2D globalLight;
+    [SerializeField] private List<Light2D> lightsOff;
 
     [SerializeField] private AudioClip waterDrop1;
     [SerializeField] private AudioClip waterDrop2;
@@ -363,6 +364,9 @@ public class Level2Manager : MonoBehaviour
         globalLight.intensity = 1f;
         yield return new WaitForSeconds(.05f);
         globalLight.intensity = .1f;
+
+        foreach (Light2D light in lightsOff)
+            light.intensity = .65f;
 
         //while (Vector3.Distance(enemy.transform.position, newEnemyPosition) > 0.3f)
         //    enemy.transform.position = Vector3.Lerp(enemy.transform.position, newEnemyPosition, smoothSpeed);

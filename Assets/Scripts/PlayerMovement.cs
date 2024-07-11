@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private bool isGrounded;
     private bool isFalling = false;
-    [SerializeField] private bool isDashing = false;
+    public static bool isDashing = false;
     private float elapsedTime = 0f;
     private float dashingTime = 0.4f;
     public SpriteRenderer playerSprite;

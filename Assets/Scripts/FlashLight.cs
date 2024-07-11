@@ -9,6 +9,7 @@ public class FlashLight : MonoBehaviour
     [SerializeField] private GameObject flashlight;
     [SerializeField] private GameObject player;
     [SerializeField] private Light2D playerFlashlight;
+    [SerializeField] private GameObject wall;
 
     void Update()
     {
@@ -19,6 +20,7 @@ public class FlashLight : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            wall.SetActive(false);
             playerFlashlight.intensity = 1;
             ManageEnergyFlashLight.startManagement = true;
             playerFlashlight.pointLightInnerRadius = 3f;

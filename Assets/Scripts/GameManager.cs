@@ -77,9 +77,12 @@ public class GameManager : MonoBehaviour
     // Esta función prepara el evento que ha sido detectado en el Update() y se encarga de gestionar los sonidos y parar el movimiento del jugador
     void eventHandler(AudioClip playAudio)
     {
-        playerMovement.rb.velocity = new Vector2(0f, 0f);
         playerMovement.movementEnabled = false;
         playerMovement.animator.SetFloat("Horizontal", 0);
+        playerMovement.rb.gravityScale = 2.0f;
+        PlayerMovement.isDashing = false;
+        playerMovement.animator.SetBool("isDashing", PlayerMovement.isDashing);
+        playerMovement.rb.velocity = new Vector2(0f, playerMovement.rb.velocity.y);
         audioEffects.PlayOneShot(playAudio);
     }
 
